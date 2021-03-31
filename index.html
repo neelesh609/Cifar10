@@ -1,0 +1,433 @@
+<!DOCTYPE HTML>
+<!--
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>CIFAR-10 Classifier</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div  id="wrapper" class="divided" style="z-index: 0;">
+			
+				<!-- One -->
+					<div style="z-index: 1;" class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
+					
+						<div  class="content" style="float: left;">
+							
+							
+							<h1>CIFAR-10 Classifier</h1>
+							<p class="major"> <a href=""></a>Image classification has been a concept tingling  the brains of Computer science brains all around. It is quite trivial for the human brains
+								but a seemingly impossible task for the computer , But with the right concepts it can be pulled off ,This is where the CIFAR 10 classifier comes into play.<br/><br/>
+
+
+								The CIFAR-10 dataset consists of 60000  32*32 colour images in 10 classes, with 6000 images per class. There are 50000 training images and 10000 test images.<br/><br/>
+
+                                 The aim of this blog is to run the already existing CIFAR-10 Classifier and optimize it using various optimizers until we get the highest acuuracy rate.
+								 We can implement it on Pytorch , but we can use google colab / kaggle  just by using "import torch" .
+
+								</p>
+								<a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html"> <button type="button">Learn More</button></a><br/>
+								<br>
+							<ul class="actions stacked">
+								<p>Please click below to refer the full code.</p>
+								<a href="https://colab.research.google.com/drive/1YNmFeFmPDUPXzu_33YQ0W1-m7mXJ2VRl"> <button type="button">Open Colab</button></a><br/>
+								<li><a href="#first" class="button big wide smooth-scroll-middle">Get Started</a></li>
+							</ul>
+						</div>
+						
+					</div>
+
+				<!-- Two -->
+					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="first">
+						<div class="content">
+							<h2>Trying different optimizers</h2>
+							<p>First step to increse accuracy is to implement an optimizers. An optimizer is used to train the model accurately with reduced loss.
+								Once the loss is reduced the accuracy of the model increases.
+								This will be our basic idea to begin with.
+								Some of the various optimizers that we are using in this experiment are : <br/>
+
+								1) SGD  <br/>
+								2) ASGD <br/>
+								3) LBFGS <br/>
+								4) Rprop <br/>
+								5) RMSprop <br/>
+								6) Adam <br/>
+								7) Adamax <br/>
+								8) Adagrad <br/>
+							</p>
+							<h2>Here we try the SGD optimizer to find the accuracy.</h2>
+							<ul class="actions stacked">
+					
+								<img src="images/SGD.PNG" alt="" /> <br/><br/><br/>
+
+								<h2>The accuracy results for SGD was : 52%</h2> 
+								
+
+								<img src="images/sgd accuracy.PNG" alt="" />
+							</ul>
+						</div>
+</section>
+
+						<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
+								<div class="content">
+								<h2>Adagrad Optimizer</h2>	
+								<p>The second optimizer I tried was adagrad and the results were not quite as i expected as the accuracy fell instead of increasing.
+								
+								</p>
+								<ul class="actions stacked">
+									<img width='1000px' height='400px' src="images/adagrad.PNG" alt="" /><br/><br/><br/>
+									
+									<h2>The accuracy results of Adagrad optimizer was : 34%</h2>
+									<img width='800px' height='400px' src="images/adagrad_accuracy.PNG" alt="" /><br/><br/><br/>
+									
+			
+									</ul>
+							</div>
+	
+						</section>
+
+						<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
+							<div class="content">
+								<h2>The Adam optimizer </h2>
+								<p>The Adam optimizer gave a good accuracy rate of 55% , greater than the previous two. inorder to find out what maximum
+									accuracy rate I would get i did make a few changes by changing epoch to 5 <br/>
+
+									By doing this I could minimize the loss and thus i got a better accuracy of 61%.
+								</p>
+								<ul class="actions stacked">
+									<img width='800px' height='400px' src="images/adam opt.PNG" alt="" />
+									<h2>The accuracy of Adam at epoch 2</h2>
+									<img width='800px' height='400px' src="images/adam result.PNG" alt="" />
+									<h2>The accuracy of Adam at epoch 5 and epoch 10</h2>
+									<p>Once I changed the epoch to 5 I did get a better accuracy as the loss minimized a lot more than when epoch was 2. 
+										Keeping the same in mind I again changed the epoch to 15 (takes a lot of time to run though) but the loss did not minimize much
+										and it was almost the same as epoch 10 and thus the accuracy didnt change and stayed at 61%.<br/>
+
+										At this point I connected an extra layer (Fully Connected 4 (FC4)) and ran to see if I could get better results.
+										But the accuracy rate did not change from 61%. Therefore I moved on to a different optimizer.
+
+				                </p>
+									<img width='800px' height='400px' src="images/adam_61.PNG" alt="" />
+									
+								</ul>
+							</div>
+							
+						</section>
+
+
+
+
+				<!-- Three -->
+					<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
+						<div class="content">
+							<h2>The Rprop Optimizer</h2>
+							<p>The Rprop optimizer had a not so good accuracy rate. </p>
+							<ul class="actions stacked">
+								<img width='800px' height='400px' src="images/rprop.PNG" alt="" /><br/><br/>
+
+								<h2>The Accuracy of Rprop Optimizer was : 16%</h2>
+								<img  src="images/rprop_res.PNG" alt="" />
+								
+							</ul>
+						</div>
+						
+					</section>
+
+				<!-- Four -->
+					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
+						<div class="content">
+							<h2>The RMSprop optimizer</h2>
+							<p>The Rmsprop optimizer had the least accuracy amongst all other optimizers. 
+							</p>
+							<ul class="actions stacked">
+								<img src="images/rmsprop.PNG" alt="" /> <br/><br/>
+								<h2>Accuracy rate with RMSprop optimizer is 10%</h2>
+								
+
+								<img  src="images/rmsprop_result.PNG" alt="" />
+
+								
+							</ul>
+						</div>
+
+					</section>
+
+				<!-- Five -->
+				<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
+					<div class="content">
+						<h2>The LBFGS optimizer</h2>
+						<p>The LBFGS optimizer was good but not great in terms of accuracy when compared to the other optimizers.
+							An extra closure function needs to be added while using the LBFGS optimizer.
+						</p>
+						<ul class="actions stacked">
+							<img  src="images/LBFGS.PNG" alt="" /> <br/><br/><br/>
+							<h2>The Accuracy Rate was : 10%</h2>
+							<p> We can notice that the accuracy rate is 10% after using the LBFGS optimizer , exactly same as the RMSprop optimizer.
+
+							</p>
+							<img  src="images/lbfgs result.PNG" alt="" />
+
+							
+						</ul>
+					</div>
+
+				</section>
+					
+							
+
+				<!-- Six -->
+				<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
+					<div class="content">
+						<h2>The ASGD optimizer</h2>
+						<p>The accuracy was quite less compared to few optimizers but better than Adagrad , LBFGS , Rprop and RMSprop.</p><br/><br/>
+						
+
+					
+						<ul class="actions stacked">
+							<img width='800px' height='400px' src="images/asgd.PNG" alt="" /> 
+							
+							<h2>The Accuracy with ASGD optimizer was : 37%</h2> <br/><br/>
+							<img width='800px' height='400px' src="images/asgd_accuracy.PNG" alt="" />
+						</ul>
+					</div>
+
+				</section>
+
+
+
+				<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
+					<div class="content">
+						<h2>The Adamax optimizer.</h2>
+						<p>The Adamax optimizer had one of the highest accuracies with 55% , similar to that of Adam optimizer
+							However when I changed the epoch to 5 the accuracy increased to 61% which had a faster growth compared to Adam optimizer at epoch 5.<br/>
+							Just to be sure I did run it again by increasing the Epoch to 10 and  I got an accuracy rate of 63% which was 2 Percentile greater than that of Adam at the same epoch.
+							By now I had observed that the highest accuracy rate can be achieved using Adamax optimizer by making a few tweeks in the hyperparameters.
+						</p>
+						<ul class="actions stacked">
+							<img  src="images/adamax_opt.PNG" alt="" /> <br/><br/><br/>
+							<h2>The accuracy at Adamax before changes.</h2>
+							<img width='1000px' height='400px' src="images/adam result.PNG" alt="" /> <br/><br/><br/>
+							<h2>The accuracy of Adamax at epoch 5</h2>
+							<p>The accuracy rate incresed to 61% at epoch 5 same as that of adam but at epoch 10 the loss was lesser compared to Adam
+								Also the accurscy rate at epoch 10 was 63% more than adam which had 61%.
+							</p>
+							<img width='800px' height='400px' src="images/adam_61.PNG" alt="" /> <br/><br/><br/>
+							<h2>The Hyperparameter changes.</h2>
+							<p>I added an extra Fully Connected Layer to the existing 3 layers guessing it will increase the accuracy rate , when there is an extra layer to match, 
+								The loss would minimize and the accuracy would increase. Thus the basic ideology is to decrease loss and increase the accuracy.
+								Which did work and the accuracy increased by 1% to 64%
+							</p>
+							<img  src="images/fc4 change adamax.PNG" alt="" /> <br/><br/><br/>
+							<h2>Decrease in loss at epoch 10 </h2>
+
+				            <img width='500px' src="images/loss.PNG" alt="" /> <br/><br/>
+
+							<h2> Changing the Shape of Convolution Neural Network and the number of Neurons per layer</h2>
+							<p>I tried the multiples of the already existing nummber of neurons per layer . I tried to increase the number of neurons and thus 
+								achieved the highest accuracy <br/>
+
+								After alot of changes to the CNN and multiple runs I finally found the combination that gave me the highest accuracy of 76%.
+							</p>
+							<img width='500px' src="images/convo2d.PNG" alt="" /> <br/><br/>
+
+							<h2>Loss at Epoch 15</h2> 
+							<p>The loss had decreased to 0.052 which was very low compared to 0.167 at epoch 10. thus the outcome accuracy had to be higher</p>
+							<img width='500px'  src="images/loss 2.PNG" alt="" /> <br/><br/>
+
+                            <h2>The Final Accuracy rate after all the changes was 76%.</h2> 
+							<p>This was the final accuracy achieved with :<br/><br/>
+								1 ) epoch 15<br/><br/>
+
+								2 ) conv2d(3,64,3) <br/>
+								    conv2d(64,128,3)<br/>
+								    conv2d(128,256,3)<br/><br/>
+									
+								3 ) fc1(64*4*4,240)<br/>
+								    fc2(240,168)<br/>
+							        fc3(168 , 88)<br/>
+								    fc4(88,10)	<br/><br/><br/>
+
+									<img   src="images/adamax accuracy 76.PNG" alt="" /> <br/><br/>
+
+							</p>
+							
+							
+						</ul>
+					</div>
+
+				</section>
+
+				<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
+					<div class="content">
+						<h2>Visulaization of The accuracy rate of all the optimizers used.</h2>
+						<p>The accuracy rate of all optimizers have been compared in the bar graph below.</p><br/><br/>
+						
+
+					
+						<ul class="actions stacked">
+							<img width='800px' height='400px' src="images/optimgraph.PNG" alt="" /> 
+							
+							<h2>The runtime varies for each optimizer.</h2> <br/><br/>
+							<p>The runtime of all optimizers at epoch 2 are visualised in the bar graph below.</p>
+							<p>Having a visulaization can give instant reading as to which optimizer has the best accuracy in a lesser runtime.</p>
+							<img width='800px' height='400px' src="images/epoch2 graph.PNG" alt="" />
+						
+							<h2>Visulaization of optimizers at epoch 5.</h2>
+							<p>The runtime of the top three optimizers have been compared in the bar graph below.</p><br/><br/>
+							<img width='800px' height='400px' src="images/epoch 5.PNG" alt="" />
+
+							<h2>Visulaization of optimizers at epoch 15.</h2>
+							<p>The runtime of the top two optimizers have been compared in the bar graph below.</p><br/><br/>
+							<img width='800px' height='400px' src="images/epoch 15 graph.PNG" alt="" />
+
+							<p></p>
+						
+						
+						</ul>
+					</div>
+
+
+				</section>
+                                  
+
+				<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
+					<div class="content">
+
+                        <h2>Contributions</h2>
+
+						<p>I have applied all the various optimizers to the model and run them indivisually to find out which optimizer had the best accuracy.
+                           After the best optimizer (Adamax in my case ) was decided I have tried to change the hyperparameters as suggested in the instructions of the assignment
+						   I have increased the Fully Connected layer (from fc(3 to fc(4))) 
+						   I have changed the number of neurons per layer and thus increased the accuracy from 55% to 76%
+						</p>
+
+						<h2>Challenges</h2>
+
+						<p>The challenges i faced was how to change the number of neuron and shape of conv 2d inorder to attain the maximum accuracy possible.
+							I did increase the accuracy to 63% by changing the epoch to 15
+							But even after I changed the Conv2d i had a lot of errors. at this time the reference below helped me push the value to 70% accuracy.
+							Ater this I tweeked a few more values apart from the reference and also increased the fully connected layer (fc(4)) from which the accuracy rate hit  76%.
+						</p>
+
+						<h2>Visualization Benefits.</h2>
+
+						<p>The visualization helped me find the best optimizer to use , based on the accuracy and runtime.
+							In my case I had a tie between Adam and Adamax with 55% accuracy , that is when I had to plot the run time to figure out the best optimizer.
+							When I changed the epoch to 15 Adamax had a slightly higher accuracy than the Adam optimizer.
+							This is easily deducable from the above bar graphs.
+						</p>
+
+						<h2>Explanation o the basic algorithm</h2>
+
+						<img width='800px' height='400px' src="images/import.PNG" alt="" />
+						
+						<p>At the beggining we import the data sets of Cifar 10 through the torchvision package. If we are working on any other platform other than pytorch 
+							we can use the import torch package to run it on google colab / kaggle. 	</p>
+
+							<img width='800px' height='400px' src="images/train_test.PNG" alt="" />
+
+							<p>The train and test data are loaded</p>
+
+
+							<img width='800px' height='400px' src="images/rand4.PNG" alt="" />
+
+
+							<p>This function is to load 4 random images using the trainloader to see what kind of images are there in Cifar-10</p>
+
+
+                            <img width='800px' height='400px' src="images/convopt.PNG" alt="" />
+
+							<p> We now build the Convolution neural network by using 2 - Conv- Convolution layer,  2- Relu- Activation function   , pooling-layer  , 3 - FC - fully Connected layer</p>
+							<p> Below which we define the optimizer and loss function for the optimizer. </p>
+
+					
+                            <img width='800px' height='400px' src="images/epoch123.PNG" alt="" />
+
+						
+							<p> This funtion is to run the model for the defined number of times to reduce the loss. 
+								Suppose if epoch is 2 and limit is 12000 then the model will run from (1,2000) to 2(12,000) with 2000 intervals in between them.
+							   
+								Here the loss of the training model is calculated ad will show the model so that we know how to reduce the loss.
+
+							</p>
+
+							<img width='800px' height='400px' src="images/accuracyalgo.PNG" alt="" />
+
+							<p> Predicting the accuracy for the test dataset based on the loss obtained from the training dataset </p>
+
+							<img width='800px' height='400px' src="images/confusion matrix.PNG" alt="" />
+							<p> Here we get the matrix that includes accuracies o all images from which we can conclude how our model has worked.</p>
+
+
+
+						<h2>References</h2>
+					
+						<a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html">Pytorch Tutorial.</a><br/>
+						<a href="https://faroit.com/keras-docs/2.0.8/optimizers/#usage-of-optimizers">optimizer usage.</a><br/>
+						<a href="https://www.stefanfiott.com/machine-learning/cifar-10-classifier-using-cnn-in-pytorch/">Stefanfiott for CNN changes .</a><br/><br/><br/>
+
+						
+						
+						<h2>Links</h2>
+
+						<a href="https://github.com/neelesh609/cifar10/search?l=jupyter-notebook">Jupyter-notebook for all codes.</a><br/>
+						<a href="https://neelesh609.github.io/cifar10/"> Github link for the blog post</a><br/>
+						<a href="https://neelesh609.github.io/Portfolio/"> My portolio</a><br/>
+
+						
+
+					
+						
+					</div>
+
+				</section>
+				<!-- Contact -->
+				<section id="contact" class="four" style="text-align: center;">
+					<div class="container">
+						
+						<header>
+							<h2>Contact</h2><br/>
+							
+
+						<h3></h3>
+						</header>
+						<dl class="alt">
+							<div class="container">
+
+								<p> Any Queries ? Contact me ! </p>
+								<p><strong>Email Id : </strong>Neelesh216@gmail.com</p>
+								<p><strong>Address :</strong> 404 E Border st, Arlington, Texas 76010, USA</p>
+								<p><strong>Phone :</strong> 682 375 1222</p>
+							  </div>
+
+					</div>
+				</section>
+					
+
+				<!-- Seven -->
+					
+
+				<!-- Footer -->
+					
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
